@@ -54,6 +54,15 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="navigation-demo"
+        options={{
+          title: "Nav Demo",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="arrow.triangle.branch" color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

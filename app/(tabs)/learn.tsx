@@ -87,7 +87,7 @@ export default function LearnScreen() {
     },
     {
       id: "4",
-      title: "Navigation",
+      title: "Navigation Tutorial",
       description: "Learn how to navigate between screens",
       route: "NavigationTutorial",
     },
@@ -98,7 +98,6 @@ export default function LearnScreen() {
     <TouchableOpacity
       style={styles.navigationCard}
       onPress={() => {
-        // Navigate to the route instead of showing an alert
         navigation.navigate(item.route as never);
       }}
     >

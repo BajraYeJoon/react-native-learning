@@ -124,7 +124,7 @@ export default function UserInputScreen() {
   };
 
   // Handle form submission
-  const handleSubmit = () => {
+  const handleSubmit = (formData: FormData) => {
     Keyboard.dismiss();
 
     if (validateForm()) {
@@ -133,9 +133,17 @@ export default function UserInputScreen() {
       // Simulate API call
       setTimeout(() => {
         setIsSubmitting(false);
-        Alert.alert("Form Submitted", "Thank you for your submission!", [
-          { text: "OK" },
-        ]);
+        Alert.alert(
+          "Form Submitted",
+          `Thank you for your submission!\n\n` +
+            `Name: ${formData.name}\n` +
+            `Email: ${formData.email}\n` +
+            `Description: ${formData.description || "Not provided"}\n` +
+            `Gender: ${formData.selectedGender || "Not selected"}\n` +
+            `Programming Language: ${formData.selectedLanguage}\n` +
+            `Agreed to Terms: ${formData.agreeToTerms ? "Yes" : "No"}`,
+          [{ text: "OK", onPress: () => console.log("Form data:", formData) }]
+        );
       }, 1500);
     }
   };
@@ -305,7 +313,7 @@ export default function UserInputScreen() {
                 (!formData.agreeToTerms || isSubmitting) &&
                   styles.disabledButton,
               ]}
-              onPress={handleSubmit}
+              onPress={() => handleSubmit(formData)}
               disabled={!formData.agreeToTerms || isSubmitting}
             >
               {isSubmitting ? (
