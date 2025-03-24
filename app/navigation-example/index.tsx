@@ -7,103 +7,132 @@ import {
   ScrollView,
   SafeAreaView,
 } from "react-native";
-import { Link, router } from "expo-router";
+import { Link, router, Stack } from "expo-router";
 
 export default function NavigationExampleScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>
-            Learn Navigation with Expo Router
+    <>
+      <Stack.Screen
+        options={{
+          title: "Navigation Examples",
+        }}
+      />
+      <ScrollView style={styles.container}>
+        <View style={styles.banner}>
+          <Text style={styles.bannerTitle}>🎉 New Real-World Examples!</Text>
+          <Text style={styles.bannerText}>
+            Check out our new real-world navigation examples with fully
+            functional screens for onboarding, authentication, and main app
+            navigation.
           </Text>
-          <Text style={styles.headerSubtitle}>
-            Step-by-step guide to different navigation patterns
-          </Text>
+          <View style={styles.bannerButtonsContainer}>
+            <Link href="/navigation-example/onboarding-flow-example" asChild>
+              <TouchableOpacity style={styles.bannerButton}>
+                <Text style={styles.bannerButtonText}>Onboarding</Text>
+              </TouchableOpacity>
+            </Link>
+            <Link href="/navigation-example/auth-flow" asChild>
+              <TouchableOpacity style={styles.bannerButton}>
+                <Text style={styles.bannerButtonText}>Authentication</Text>
+              </TouchableOpacity>
+            </Link>
+            <Link href="/navigation-example/main-app-flow" asChild>
+              <TouchableOpacity style={styles.bannerButton}>
+                <Text style={styles.bannerButtonText}>Main App</Text>
+              </TouchableOpacity>
+            </Link>
+          </View>
         </View>
 
         <View style={styles.content}>
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Navigation Types</Text>
+            <Text style={styles.sectionTitle}>Basic Navigation Types</Text>
+            <Text style={styles.sectionDescription}>
+              Explore the core navigation patterns in React Native
+            </Text>
 
-            <TouchableOpacity
-              style={styles.exampleCard}
-              onPress={() =>
-                router.push("/navigation-example/stack-navigation")
-              }
-            >
-              <View style={styles.cardContent}>
-                <View style={styles.iconContainer}>
-                  <Text style={styles.iconText}>1️⃣</Text>
-                </View>
-                <View style={styles.cardDetails}>
-                  <Text style={styles.cardTitle}>Stack Navigation</Text>
-                  <Text style={styles.cardDescription}>
-                    Learn about push/pop navigation for screens that stack on
-                    top of each other
-                  </Text>
-                </View>
-              </View>
-              <Text style={styles.cardArrow}>→</Text>
-            </TouchableOpacity>
+            <Link href="/navigation-example/stack-navigation" asChild>
+              <TouchableOpacity style={styles.navigationLink}>
+                <Text style={styles.navigationLinkTitle}>Stack Navigation</Text>
+                <Text style={styles.navigationLinkDescription}>
+                  Push/pop navigation pattern with history support
+                </Text>
+                <Text style={styles.navigationLinkCTA}>View Example →</Text>
+              </TouchableOpacity>
+            </Link>
 
-            <TouchableOpacity
-              style={styles.exampleCard}
-              onPress={() => router.push("/navigation-example/tab-navigation")}
-            >
-              <View style={styles.cardContent}>
-                <View style={styles.iconContainer}>
-                  <Text style={styles.iconText}>2️⃣</Text>
-                </View>
-                <View style={styles.cardDetails}>
-                  <Text style={styles.cardTitle}>Tab Navigation</Text>
-                  <Text style={styles.cardDescription}>
-                    Learn how to implement bottom tabs for main app sections
-                  </Text>
-                </View>
-              </View>
-              <Text style={styles.cardArrow}>→</Text>
-            </TouchableOpacity>
+            <Link href="/navigation-example/tab-navigation" asChild>
+              <TouchableOpacity style={styles.navigationLink}>
+                <Text style={styles.navigationLinkTitle}>Tab Navigation</Text>
+                <Text style={styles.navigationLinkDescription}>
+                  Bottom tabs for switching between screens
+                </Text>
+                <Text style={styles.navigationLinkCTA}>View Example →</Text>
+              </TouchableOpacity>
+            </Link>
 
-            <TouchableOpacity
-              style={styles.exampleCard}
-              onPress={() =>
-                router.push("/navigation-example/drawer-navigation")
-              }
-            >
-              <View style={styles.cardContent}>
-                <View style={styles.iconContainer}>
-                  <Text style={styles.iconText}>3️⃣</Text>
-                </View>
-                <View style={styles.cardDetails}>
-                  <Text style={styles.cardTitle}>Drawer Navigation</Text>
-                  <Text style={styles.cardDescription}>
-                    Learn about side drawer navigation for settings and profile
-                  </Text>
-                </View>
-              </View>
-              <Text style={styles.cardArrow}>→</Text>
-            </TouchableOpacity>
+            <Link href="/navigation-example/drawer-navigation" asChild>
+              <TouchableOpacity style={styles.navigationLink}>
+                <Text style={styles.navigationLinkTitle}>
+                  Drawer Navigation
+                </Text>
+                <Text style={styles.navigationLinkDescription}>
+                  Side menu for settings and less frequent actions
+                </Text>
+                <Text style={styles.navigationLinkCTA}>View Example →</Text>
+              </TouchableOpacity>
+            </Link>
 
-            <TouchableOpacity
-              style={styles.exampleCard}
-              onPress={() =>
-                router.push("/navigation-example/nested-navigation")
-              }
-            >
-              <View style={styles.cardContent}>
-                <View style={styles.iconContainer}>
-                  <Text style={styles.iconText}>4️⃣</Text>
-                </View>
-                <View style={styles.cardDetails}>
-                  <Text style={styles.cardTitle}>Nested Navigation</Text>
-                  <Text style={styles.cardDescription}>
-                    Learn how to combine different navigation types together
-                  </Text>
-                </View>
-              </View>
-              <Text style={styles.cardArrow}>→</Text>
-            </TouchableOpacity>
+            <Link href="/navigation-example/nested-navigation" asChild>
+              <TouchableOpacity style={styles.navigationLink}>
+                <Text style={styles.navigationLinkTitle}>
+                  Nested Navigation
+                </Text>
+                <Text style={styles.navigationLinkDescription}>
+                  Combining multiple navigation types together
+                </Text>
+                <Text style={styles.navigationLinkCTA}>View Example →</Text>
+              </TouchableOpacity>
+            </Link>
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Real-World Examples</Text>
+            <Text style={styles.sectionDescription}>
+              Complete navigation flows for common app scenarios
+            </Text>
+
+            <Link href="/navigation-example/onboarding-flow-example" asChild>
+              <TouchableOpacity style={styles.navigationLink}>
+                <Text style={styles.navigationLinkTitle}>Onboarding Flow</Text>
+                <Text style={styles.navigationLinkDescription}>
+                  Multi-step introduction screens for new users
+                </Text>
+                <Text style={styles.navigationLinkCTA}>View Example →</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/navigation-example/auth-flow" asChild>
+              <TouchableOpacity style={styles.navigationLink}>
+                <Text style={styles.navigationLinkTitle}>
+                  Authentication Flow
+                </Text>
+                <Text style={styles.navigationLinkDescription}>
+                  Login, signup, and password recovery screens
+                </Text>
+                <Text style={styles.navigationLinkCTA}>View Example →</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/navigation-example/main-app-flow" asChild>
+              <TouchableOpacity style={styles.navigationLink}>
+                <Text style={styles.navigationLinkTitle}>Main App Flow</Text>
+                <Text style={styles.navigationLinkDescription}>
+                  Complete app structure with tabs, drawer and content screens
+                </Text>
+                <Text style={styles.navigationLinkCTA}>View Example →</Text>
+              </TouchableOpacity>
+            </Link>
           </View>
 
           <View style={styles.infoSection}>
@@ -123,15 +152,14 @@ export default function NavigationExampleScreen() {
             </Text>
           </View>
 
-          <TouchableOpacity
-            style={styles.returnButton}
-            onPress={() => router.push("/(tabs)/navigation-demo")}
-          >
-            <Text style={styles.returnButtonText}>Back to Navigation Demo</Text>
-          </TouchableOpacity>
+          <Link href="/(tabs)" asChild>
+            <TouchableOpacity style={styles.returnButton}>
+              <Text style={styles.returnButtonText}>Back to Main App</Text>
+            </TouchableOpacity>
+          </Link>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </>
   );
 }
 
@@ -140,20 +168,44 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F5F8FA",
   },
-  header: {
-    backgroundColor: "#1877F2",
+  banner: {
+    backgroundColor: "#007AFF",
     padding: 20,
-    paddingTop: 20,
+    margin: 10,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  headerTitle: {
-    fontSize: 24,
+  bannerTitle: {
+    fontSize: 20,
     fontWeight: "bold",
-    color: "white",
+    color: "#fff",
+    marginBottom: 10,
   },
-  headerSubtitle: {
-    fontSize: 16,
-    color: "rgba(255, 255, 255, 0.8)",
-    marginTop: 5,
+  bannerText: {
+    fontSize: 14,
+    color: "#fff",
+    marginBottom: 15,
+  },
+  bannerButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  bannerButton: {
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "#fff",
+  },
+  bannerButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 13,
   },
   content: {
     padding: 16,
@@ -167,54 +219,34 @@ const styles = StyleSheet.create({
     color: "#333",
     marginBottom: 16,
   },
-  exampleCard: {
-    backgroundColor: "white",
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
-    flexDirection: "row",
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  cardContent: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  iconContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: "#E7F3FF",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: 16,
-  },
-  iconText: {
-    fontSize: 24,
-  },
-  cardDetails: {
-    flex: 1,
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 4,
-  },
-  cardDescription: {
+  sectionDescription: {
     fontSize: 14,
     color: "#666",
-    lineHeight: 20,
+    marginBottom: 15,
   },
-  cardArrow: {
-    fontSize: 20,
-    color: "#1877F2",
-    marginLeft: 8,
+  navigationLink: {
+    backgroundColor: "#f9f9f9",
+    borderRadius: 8,
+    padding: 15,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#eee",
+  },
+  navigationLinkTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#007AFF",
+    marginBottom: 4,
+  },
+  navigationLinkDescription: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 8,
+  },
+  navigationLinkCTA: {
+    fontSize: 14,
+    color: "#007AFF",
+    alignSelf: "flex-end",
   },
   infoSection: {
     backgroundColor: "white",
