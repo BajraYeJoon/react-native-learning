@@ -27,17 +27,44 @@ export default function NavigationDemoScreen() {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Choose an Example</Text>
 
-            <Link href="../navigation-example/navigation" asChild>
+            <TouchableOpacity
+              style={[styles.exampleCard, styles.highlightedCard]}
+              onPress={() => {
+                // Since we can't directly link to files outside the app directory structure
+                // Show a message instead
+                alert(
+                  "The React Navigation example is not available in this demo. Please check out the Expo Router example instead."
+                );
+              }}
+            >
+              <View style={styles.cardContent}>
+                <View
+                  style={[styles.iconContainer, styles.primaryIconContainer]}
+                >
+                  <Text style={styles.iconText}>🧭</Text>
+                </View>
+                <View style={styles.cardDetails}>
+                  <Text style={styles.cardTitle}>React Navigation Example</Text>
+                  <Text style={styles.cardDescription}>
+                    Complete navigation example using React Navigation with
+                    Stack, Tab, and Drawer navigation
+                  </Text>
+                </View>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
+            </TouchableOpacity>
+
+            <Link href="/navigation-example" asChild>
               <TouchableOpacity style={styles.exampleCard}>
                 <View style={styles.cardContent}>
                   <View style={styles.iconContainer}>
-                    <Text style={styles.iconText}>👋</Text>
+                    <Text style={styles.iconText}>🗺️</Text>
                   </View>
                   <View style={styles.cardDetails}>
-                    <Text style={styles.cardTitle}>Onboarding Flow</Text>
+                    <Text style={styles.cardTitle}>Expo Router Tutorial</Text>
                     <Text style={styles.cardDescription}>
-                      A Facebook-style onboarding experience with welcome
-                      screens, feature showcase, and account creation
+                      Interactive step-by-step guide to Stack, Tab, Drawer and
+                      Nested Navigation patterns using Expo Router
                     </Text>
                   </View>
                 </View>
@@ -45,70 +72,121 @@ export default function NavigationDemoScreen() {
               </TouchableOpacity>
             </Link>
 
-            <Link href="../navigation-example/navigation" asChild>
-              <TouchableOpacity style={styles.exampleCard}>
-                <View style={styles.cardContent}>
-                  <View style={styles.iconContainer}>
-                    <Text style={styles.iconText}>🔒</Text>
-                  </View>
-                  <View style={styles.cardDetails}>
-                    <Text style={styles.cardTitle}>Authentication Flow</Text>
-                    <Text style={styles.cardDescription}>
-                      Login, registration, and password recovery screens with
-                      form validation
-                    </Text>
-                  </View>
+            <TouchableOpacity
+              style={styles.exampleCard}
+              onPress={() => {
+                alert(
+                  "The onboarding flow example is included in the Expo Router Tutorial. Please check the navigation examples."
+                );
+              }}
+            >
+              <View style={styles.cardContent}>
+                <View style={styles.iconContainer}>
+                  <Text style={styles.iconText}>👋</Text>
                 </View>
-                <Text style={styles.cardArrow}>→</Text>
-              </TouchableOpacity>
-            </Link>
+                <View style={styles.cardDetails}>
+                  <Text style={styles.cardTitle}>Onboarding Flow</Text>
+                  <Text style={styles.cardDescription}>
+                    A Facebook-style onboarding experience with welcome screens,
+                    feature showcase, and account creation
+                  </Text>
+                </View>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
+            </TouchableOpacity>
 
-            <Link href="../navigation-example/navigation" asChild>
-              <TouchableOpacity style={styles.exampleCard}>
-                <View style={styles.cardContent}>
-                  <View style={styles.iconContainer}>
-                    <Text style={styles.iconText}>📱</Text>
-                  </View>
-                  <View style={styles.cardDetails}>
-                    <Text style={styles.cardTitle}>Main App Navigation</Text>
-                    <Text style={styles.cardDescription}>
-                      Tab-based navigation with home feed, friends list, and
-                      notifications
-                    </Text>
-                  </View>
+            <TouchableOpacity
+              style={styles.exampleCard}
+              onPress={() => {
+                alert(
+                  "The authentication flow example is included in the Expo Router Tutorial. Please check the navigation examples."
+                );
+              }}
+            >
+              <View style={styles.cardContent}>
+                <View style={styles.iconContainer}>
+                  <Text style={styles.iconText}>🔒</Text>
                 </View>
-                <Text style={styles.cardArrow}>→</Text>
-              </TouchableOpacity>
-            </Link>
+                <View style={styles.cardDetails}>
+                  <Text style={styles.cardTitle}>Authentication Flow</Text>
+                  <Text style={styles.cardDescription}>
+                    Login, registration, and password recovery screens with form
+                    validation
+                  </Text>
+                </View>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
+            </TouchableOpacity>
 
-            <Link href="../navigation-example/navigation" asChild>
-              <TouchableOpacity style={styles.exampleCard}>
-                <View style={styles.cardContent}>
-                  <View style={styles.iconContainer}>
-                    <Text style={styles.iconText}>👤</Text>
-                  </View>
-                  <View style={styles.cardDetails}>
-                    <Text style={styles.cardTitle}>Profile & Settings</Text>
-                    <Text style={styles.cardDescription}>
-                      Drawer navigation for user profile, settings, and
-                      preferences
-                    </Text>
-                  </View>
+            <TouchableOpacity
+              style={styles.exampleCard}
+              onPress={() => {
+                alert(
+                  "The main app navigation example is included in the Expo Router Tutorial. Please check the navigation examples."
+                );
+              }}
+            >
+              <View style={styles.cardContent}>
+                <View style={styles.iconContainer}>
+                  <Text style={styles.iconText}>📱</Text>
                 </View>
-                <Text style={styles.cardArrow}>→</Text>
-              </TouchableOpacity>
-            </Link>
+                <View style={styles.cardDetails}>
+                  <Text style={styles.cardTitle}>Main App Navigation</Text>
+                  <Text style={styles.cardDescription}>
+                    Tab-based navigation with home feed, friends list, and
+                    notifications
+                  </Text>
+                </View>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.exampleCard}
+              onPress={() => {
+                alert(
+                  "The profile & settings example is included in the Expo Router Tutorial. Please check the navigation examples."
+                );
+              }}
+            >
+              <View style={styles.cardContent}>
+                <View style={styles.iconContainer}>
+                  <Text style={styles.iconText}>👤</Text>
+                </View>
+                <View style={styles.cardDetails}>
+                  <Text style={styles.cardTitle}>Profile & Settings</Text>
+                  <Text style={styles.cardDescription}>
+                    Drawer navigation for user profile, settings, and
+                    preferences
+                  </Text>
+                </View>
+              </View>
+              <Text style={styles.cardArrow}>→</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.infoSection}>
-            <Text style={styles.infoTitle}>About This Demo</Text>
+            <Text style={styles.infoTitle}>
+              About These Navigation Examples
+            </Text>
             <Text style={styles.infoText}>
-              This navigation demo showcases a complete Facebook-style
-              navigation flow including onboarding, authentication, tab
-              navigation, and drawer navigation.
+              This demo focuses on Expo Router navigation patterns:
               {"\n\n"}
-              Each example demonstrates best practices for React Navigation and
-              demonstrates proper TypeScript usage for type-safe navigation.
+              <Text style={styles.boldText}>Expo Router</Text> - A file-system
+              based routing system inspired by Next.js that simplifies
+              navigation in React Native.
+              {"\n\n"}
+              The Expo Router tutorial provides step-by-step interactive guides
+              to understand different navigation patterns:
+              {"\n\n"}• Stack Navigation - for screens that stack on top of each
+              other
+              {"\n"}• Tab Navigation - for switching between main app sections
+              {"\n"}• Drawer Navigation - for side menu options like settings
+              {"\n"}• Nested Navigation - combining multiple navigation types
+              together
+              {"\n\n"}
+              Click on the "Expo Router Tutorial" card to explore these patterns
+              in detail.
             </Text>
           </View>
         </View>
@@ -162,6 +240,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
+  highlightedCard: {
+    borderWidth: 2,
+    borderColor: "#1877F2",
+  },
   cardContent: {
     flex: 1,
     flexDirection: "row",
@@ -175,6 +257,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginRight: 16,
+  },
+  primaryIconContainer: {
+    backgroundColor: "#1877F2",
   },
   iconText: {
     fontSize: 24,
@@ -219,5 +304,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#555",
     lineHeight: 22,
+  },
+  boldText: {
+    fontWeight: "bold",
+    color: "#333",
   },
 });
