@@ -7,6 +7,7 @@ import {
   ScrollView,
   SafeAreaView,
   Image,
+  StatusBar,
 } from "react-native";
 import { Link } from "expo-router";
 
@@ -14,101 +15,109 @@ type NavigationExampleRoute = "onboarding" | "auth" | "main" | "profile";
 
 export default function NavigationDemo() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>React Native Navigation</Text>
-          <Text style={styles.headerSubtitle}>
-            Learn how to implement navigation in your app
-          </Text>
-        </View>
-
-        <View style={styles.content}>
-          <View style={styles.infoSection}>
-            <Text style={styles.infoTitle}>About Navigation</Text>
-            <Text style={styles.infoText}>
-              Navigation is a crucial part of any mobile application. It allows
-              users to move between screens and access different functionality
-              within your app.
-              {"\n\n"}
-              React Native offers several navigation options, and with Expo
-              Router, implementing navigation becomes even simpler with a
-              file-system based approach.
+    <>
+      <StatusBar barStyle="dark-content" translucent={true} />
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollView}>
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>React Native Navigation</Text>
+            <Text style={styles.headerSubtitle}>
+              Learn how to implement navigation in your app
             </Text>
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Choose an Example</Text>
+          <View style={styles.content}>
+            <View style={styles.infoSection}>
+              <Text style={styles.infoTitle}>About Navigation</Text>
+              <Text style={styles.infoText}>
+                Navigation is a crucial part of any mobile application. It
+                allows users to move between screens and access different
+                functionality within your app.
+                {"\n\n"}
+                React Native offers several navigation options, and with Expo
+                Router, implementing navigation becomes even simpler with a
+                file-system based approach.
+              </Text>
+            </View>
 
-            <Link href="/navigation-example" asChild>
-              <TouchableOpacity style={styles.tutorialCard}>
-                <View style={styles.cardContent}>
-                  <View style={styles.iconContainer}>
-                    <Text style={styles.iconText}>🧭</Text>
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Choose an Example</Text>
+
+              <Link href="/navigation-example" asChild>
+                <TouchableOpacity style={styles.tutorialCard}>
+                  <View style={styles.cardContent}>
+                    <View style={styles.iconContainer}>
+                      <Text style={styles.iconText}>🧭</Text>
+                    </View>
+                    <View style={styles.cardDetails}>
+                      <Text style={styles.cardTitle}>Navigation Tutorial</Text>
+                      <Text style={styles.cardDescription}>
+                        Complete tutorial with examples of different navigation
+                        types and real-world flows
+                      </Text>
+                    </View>
                   </View>
-                  <View style={styles.cardDetails}>
-                    <Text style={styles.cardTitle}>Navigation Tutorial</Text>
-                    <Text style={styles.cardDescription}>
-                      Complete tutorial with examples of different navigation
-                      types and real-world flows
+                  <Text style={styles.cardArrow}>→</Text>
+                </TouchableOpacity>
+              </Link>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Quick Links</Text>
+
+              <View style={styles.quickLinks}>
+                <Link href="/navigation-example/stack-navigation" asChild>
+                  <TouchableOpacity style={styles.quickLink}>
+                    <Text style={styles.quickLinkText}>Stack Navigation</Text>
+                  </TouchableOpacity>
+                </Link>
+
+                <Link href="/navigation-example/tab-navigation" asChild>
+                  <TouchableOpacity style={styles.quickLink}>
+                    <Text style={styles.quickLinkText}>Tab Navigation</Text>
+                  </TouchableOpacity>
+                </Link>
+
+                <Link href="/navigation-example/drawer-navigation" asChild>
+                  <TouchableOpacity style={styles.quickLink}>
+                    <Text style={styles.quickLinkText}>Drawer Navigation</Text>
+                  </TouchableOpacity>
+                </Link>
+              </View>
+            </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Real-World Examples</Text>
+
+              <View style={styles.quickLinks}>
+                <Link
+                  href="/navigation-example/onboarding-flow-example"
+                  asChild
+                >
+                  <TouchableOpacity style={styles.quickLink}>
+                    <Text style={styles.quickLinkText}>Onboarding Flow</Text>
+                  </TouchableOpacity>
+                </Link>
+
+                <Link href="/navigation-example/auth-flow" asChild>
+                  <TouchableOpacity style={styles.quickLink}>
+                    <Text style={styles.quickLinkText}>
+                      Authentication Flow
                     </Text>
-                  </View>
-                </View>
-                <Text style={styles.cardArrow}>→</Text>
-              </TouchableOpacity>
-            </Link>
-          </View>
+                  </TouchableOpacity>
+                </Link>
 
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Quick Links</Text>
-
-            <View style={styles.quickLinks}>
-              <Link href="/navigation-example/stack-navigation" asChild>
-                <TouchableOpacity style={styles.quickLink}>
-                  <Text style={styles.quickLinkText}>Stack Navigation</Text>
-                </TouchableOpacity>
-              </Link>
-
-              <Link href="/navigation-example/tab-navigation" asChild>
-                <TouchableOpacity style={styles.quickLink}>
-                  <Text style={styles.quickLinkText}>Tab Navigation</Text>
-                </TouchableOpacity>
-              </Link>
-
-              <Link href="/navigation-example/drawer-navigation" asChild>
-                <TouchableOpacity style={styles.quickLink}>
-                  <Text style={styles.quickLinkText}>Drawer Navigation</Text>
-                </TouchableOpacity>
-              </Link>
+                <Link href="/navigation-example/main-app-flow" asChild>
+                  <TouchableOpacity style={styles.quickLink}>
+                    <Text style={styles.quickLinkText}>Main App Flow</Text>
+                  </TouchableOpacity>
+                </Link>
+              </View>
             </View>
           </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Real-World Examples</Text>
-
-            <View style={styles.quickLinks}>
-              <Link href="/navigation-example/onboarding-flow-example" asChild>
-                <TouchableOpacity style={styles.quickLink}>
-                  <Text style={styles.quickLinkText}>Onboarding Flow</Text>
-                </TouchableOpacity>
-              </Link>
-
-              <Link href="/navigation-example/auth-flow" asChild>
-                <TouchableOpacity style={styles.quickLink}>
-                  <Text style={styles.quickLinkText}>Authentication Flow</Text>
-                </TouchableOpacity>
-              </Link>
-
-              <Link href="/navigation-example/main-app-flow" asChild>
-                <TouchableOpacity style={styles.quickLink}>
-                  <Text style={styles.quickLinkText}>Main App Flow</Text>
-                </TouchableOpacity>
-              </Link>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 }
 
@@ -121,6 +130,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#1877F2",
     padding: 20,
     paddingTop: 60,
+  },
+  scrollView: {
+    paddingBottom: 20,
   },
   headerTitle: {
     fontSize: 24,

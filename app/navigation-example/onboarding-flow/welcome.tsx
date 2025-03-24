@@ -33,14 +33,12 @@ export default function WelcomeScreen() {
       </View>
 
       <View style={styles.buttonContainer}>
-        <Link
-          href="/(navigation-example)/navigation-example/onboarding-flow/features"
-          asChild
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push("./features")}
         >
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Next</Text>
-          </TouchableOpacity>
-        </Link>
+          <Text style={styles.buttonText}>Next</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.secondaryButton]}
