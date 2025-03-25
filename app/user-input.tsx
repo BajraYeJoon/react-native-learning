@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import {
-  View,
-  Text,
   StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Platform,
   TextInput,
   Switch,
   Button,
-  ScrollView,
-  SafeAreaView,
   TouchableOpacity,
-  Platform,
   Keyboard,
   Alert,
   ActivityIndicator,
@@ -124,7 +124,7 @@ export default function UserInputScreen() {
   };
 
   // Handle form submission
-  const handleSubmit = (formData: FormData) => {
+  const handleSubmit = () => {
     Keyboard.dismiss();
 
     if (validateForm()) {
@@ -212,7 +212,7 @@ export default function UserInputScreen() {
                 placeholder="Enter your password"
                 value={formData.password}
                 onChangeText={(text) => updateFormData("password", text)}
-                secureTextEntry
+                secureTextEntry={true}
               />
               {errors.password ? (
                 <Text style={styles.errorText}>{errors.password}</Text>
@@ -223,151 +223,128 @@ export default function UserInputScreen() {
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Description</Text>
               <TextInput
-                style={[styles.textInput, styles.multilineInput]}
+                style={[styles.textArea]}
                 placeholder="Tell us about yourself"
                 value={formData.description}
                 onChangeText={(text) => updateFormData("description", text)}
-                multiline
+                multiline={true}
                 numberOfLines={4}
                 textAlignVertical="top"
               />
             </View>
 
-            {/* Gender Radio-like Buttons */}
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Gender</Text>
-              <View style={styles.radioGroup}>
-                <TouchableOpacity
-                  style={[
-                    styles.radioButton,
-                    formData.selectedGender === "male" && styles.radioSelected,
-                  ]}
-                  onPress={() => updateFormData("selectedGender", "male")}
-                >
-                  <Text style={styles.radioText}>Male</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[
-                    styles.radioButton,
-                    formData.selectedGender === "female" &&
-                      styles.radioSelected,
-                  ]}
-                  onPress={() => updateFormData("selectedGender", "female")}
-                >
-                  <Text style={styles.radioText}>Female</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[
-                    styles.radioButton,
-                    formData.selectedGender === "other" && styles.radioSelected,
-                  ]}
-                  onPress={() => updateFormData("selectedGender", "other")}
-                >
-                  <Text style={styles.radioText}>Other</Text>
-                </TouchableOpacity>
-              </View>
+            {/* Switch */}
+            <View style={styles.switchGroup}>
+              <Text style={styles.label}>Agree to Terms & Conditions</Text>
+              <Switch
+                value={formData.agreeToTerms}
+                onValueChange={(value) => updateFormData("agreeToTerms", value)}
+                trackColor={{ false: "#767577", true: "#81b0ff" }}
+                thumbColor={formData.agreeToTerms ? "#2196F3" : "#f4f3f4"}
+              />
             </View>
 
-            {/* Picker for selecting programming language */}
+            {/* Picker (Dropdown) */}
             <View style={styles.inputGroup}>
               <Text style={styles.label}>Favorite Programming Language</Text>
               <View style={styles.pickerContainer}>
                 <Picker
                   selectedValue={formData.selectedLanguage}
-                  onValueChange={(itemValue: string) =>
-                    updateFormData("selectedLanguage", itemValue)
+                  onValueChange={(value) =>
+                    updateFormData("selectedLanguage", value)
                   }
                   style={styles.picker}
                 >
                   <Picker.Item label="JavaScript" value="javascript" />
                   <Picker.Item label="Python" value="python" />
                   <Picker.Item label="Java" value="java" />
-                  <Picker.Item label="C++" value="cpp" />
                   <Picker.Item label="Swift" value="swift" />
                   <Picker.Item label="Kotlin" value="kotlin" />
+                  <Picker.Item label="TypeScript" value="typescript" />
                 </Picker>
               </View>
             </View>
 
-            {/* Switch for agreement */}
+            {/* Radio Buttons (implemented with TouchableOpacity) */}
             <View style={styles.inputGroup}>
-              <View style={styles.switchContainer}>
-                <Switch
-                  value={formData.agreeToTerms}
-                  onValueChange={(value) =>
-                    updateFormData("agreeToTerms", value)
-                  }
-                  trackColor={{ false: "#767577", true: "#81b0ff" }}
-                  thumbColor={formData.agreeToTerms ? "#2196F3" : "#f4f3f4"}
-                />
-                <Text style={styles.switchLabel}>
-                  I agree to the terms and conditions
-                </Text>
+              <Text style={styles.label}>Gender</Text>
+              <View style={styles.radioGroup}>
+                <TouchableOpacity
+                  style={styles.radioOption}
+                  onPress={() => updateFormData("selectedGender", "male")}
+                >
+                  <View
+                    style={[
+                      styles.radioButton,
+                      formData.selectedGender === "male"
+                        ? styles.radioButtonSelected
+                        : null,
+                    ]}
+                  >
+                    {formData.selectedGender === "male" && (
+                      <View style={styles.radioButtonInner} />
+                    )}
+                  </View>
+                  <Text style={styles.radioLabel}>Male</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.radioOption}
+                  onPress={() => updateFormData("selectedGender", "female")}
+                >
+                  <View
+                    style={[
+                      styles.radioButton,
+                      formData.selectedGender === "female"
+                        ? styles.radioButtonSelected
+                        : null,
+                    ]}
+                  >
+                    {formData.selectedGender === "female" && (
+                      <View style={styles.radioButtonInner} />
+                    )}
+                  </View>
+                  <Text style={styles.radioLabel}>Female</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.radioOption}
+                  onPress={() => updateFormData("selectedGender", "other")}
+                >
+                  <View
+                    style={[
+                      styles.radioButton,
+                      formData.selectedGender === "other"
+                        ? styles.radioButtonSelected
+                        : null,
+                    ]}
+                  >
+                    {formData.selectedGender === "other" && (
+                      <View style={styles.radioButtonInner} />
+                    )}
+                  </View>
+                  <Text style={styles.radioLabel}>Other</Text>
+                </TouchableOpacity>
               </View>
             </View>
 
             {/* Submit Button */}
-            <TouchableOpacity
-              style={[
-                styles.submitButton,
-                (!formData.agreeToTerms || isSubmitting) &&
-                  styles.disabledButton,
-              ]}
-              onPress={() => handleSubmit(formData)}
-              disabled={!formData.agreeToTerms || isSubmitting}
-            >
-              {isSubmitting ? (
-                <ActivityIndicator color="#fff" size="small" />
-              ) : (
-                <Text style={styles.submitButtonText}>Submit</Text>
-              )}
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.infoContainer}>
-            <Text style={styles.infoTitle}>Input Component Reference</Text>
-
-            <View style={styles.infoSection}>
-              <Text style={styles.infoSectionTitle}>TextInput</Text>
-              <Text style={styles.infoText}>
-                - Use for text entry{"\n"}- Supports single-line and multi-line
-                modes{"\n"}- Can customize keyboard type and behavior{"\n"}-
-                Controllable with state (controlled component)
-              </Text>
-            </View>
-
-            <View style={styles.infoSection}>
-              <Text style={styles.infoSectionTitle}>Switch</Text>
-              <Text style={styles.infoText}>
-                - Toggle between two states (on/off){"\n"}- Good for boolean
-                selections{"\n"}- Platform-specific styling
-              </Text>
-            </View>
-
-            <View style={styles.infoSection}>
-              <Text style={styles.infoSectionTitle}>Picker</Text>
-              <Text style={styles.infoText}>
-                - Dropdown menu for selecting from a list{"\n"}- Native
-                implementation on each platform{"\n"}- Must be imported from
-                @react-native-picker/picker
-              </Text>
-            </View>
-
-            <View style={styles.infoSection}>
-              <Text style={styles.infoSectionTitle}>Button</Text>
-              <Text style={styles.infoText}>
-                - Basic button component{"\n"}- Limited styling options{"\n"}-
-                For more customization, use TouchableOpacity
-              </Text>
-            </View>
-
-            <View style={styles.infoSection}>
-              <Text style={styles.infoSectionTitle}>TouchableOpacity</Text>
-              <Text style={styles.infoText}>
-                - Highly customizable button alternative{"\n"}- Provides
-                feedback via opacity change{"\n"}- Can wrap any component to
-                make it touchable
-              </Text>
+            <View style={styles.submitButtonContainer}>
+              <TouchableOpacity
+                style={[
+                  styles.submitButton,
+                  (isSubmitting || !formData.agreeToTerms) &&
+                    styles.submitButtonDisabled,
+                ]}
+                onPress={handleSubmit}
+                disabled={isSubmitting || !formData.agreeToTerms}
+              >
+                {isSubmitting ? (
+                  <ActivityIndicator color="#fff" />
+                ) : (
+                  <Text style={styles.submitButtonText}>Submit</Text>
+                )}
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
@@ -382,7 +359,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F8FA",
   },
   header: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#9C27B0",
     padding: 20,
     paddingTop: Platform.OS === "android" ? 40 : 20,
   },
@@ -397,15 +374,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   formContainer: {
-    backgroundColor: "white",
-    borderRadius: 8,
-    margin: 10,
     padding: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
   },
   sectionTitle: {
     fontSize: 20,
@@ -414,116 +383,108 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   inputGroup: {
-    marginBottom: 15,
+    marginBottom: 20,
   },
   label: {
     fontSize: 16,
-    marginBottom: 5,
-    color: "#555",
+    marginBottom: 8,
+    fontWeight: "500",
+    color: "#333",
   },
   textInput: {
+    backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#ddd",
-    borderRadius: 4,
-    padding: 10,
+    borderRadius: 6,
+    padding: 12,
     fontSize: 16,
-    backgroundColor: "#fafafa",
   },
-  multilineInput: {
+  textArea: {
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 6,
+    padding: 12,
+    fontSize: 16,
     minHeight: 100,
-    textAlignVertical: "top",
   },
   inputError: {
     borderColor: "#FF5252",
   },
   errorText: {
     color: "#FF5252",
-    fontSize: 12,
-    marginTop: 5,
-  },
-  switchContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  switchLabel: {
-    marginLeft: 10,
-    fontSize: 16,
-    color: "#555",
-  },
-  submitButton: {
-    backgroundColor: "#2196F3",
-    borderRadius: 4,
-    padding: 15,
-    alignItems: "center",
-    marginTop: 10,
-  },
-  disabledButton: {
-    backgroundColor: "#B0BEC5",
-  },
-  submitButtonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  infoContainer: {
-    backgroundColor: "white",
-    borderRadius: 8,
-    margin: 10,
-    marginTop: 5,
-    padding: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 2,
-  },
-  infoTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 15,
-    color: "#333",
-  },
-  infoSection: {
-    marginBottom: 15,
-  },
-  infoSectionTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#2196F3",
-    marginBottom: 5,
-  },
-  infoText: {
     fontSize: 14,
-    color: "#666",
-    lineHeight: 20,
+    marginTop: 5,
   },
-  radioGroup: {
+  switchGroup: {
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  radioButton: {
+    alignItems: "center",
+    marginBottom: 20,
+    backgroundColor: "white",
+    padding: 12,
+    borderRadius: 6,
     borderWidth: 1,
     borderColor: "#ddd",
-    borderRadius: 4,
-    padding: 10,
-    flex: 1,
-    marginHorizontal: 5,
-    alignItems: "center",
-  },
-  radioSelected: {
-    backgroundColor: "#e3f2fd",
-    borderColor: "#2196F3",
-  },
-  radioText: {
-    color: "#555",
   },
   pickerContainer: {
+    backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#ddd",
-    borderRadius: 4,
-    backgroundColor: "#fafafa",
+    borderRadius: 6,
   },
   picker: {
     height: 50,
+  },
+  radioGroup: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  radioOption: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 20,
+    marginBottom: 10,
+  },
+  radioButton: {
+    height: 24,
+    width: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: "#9C27B0",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 8,
+  },
+  radioButtonSelected: {
+    borderColor: "#9C27B0",
+  },
+  radioButtonInner: {
+    height: 12,
+    width: 12,
+    borderRadius: 6,
+    backgroundColor: "#9C27B0",
+  },
+  radioLabel: {
+    fontSize: 16,
+    color: "#333",
+  },
+  submitButtonContainer: {
+    marginTop: 10,
+    marginBottom: 30,
+  },
+  submitButton: {
+    backgroundColor: "#9C27B0",
+    padding: 16,
+    borderRadius: 6,
+    alignItems: "center",
+  },
+  submitButtonDisabled: {
+    backgroundColor: "#D1C4E9",
+  },
+  submitButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "600",
   },
 });

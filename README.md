@@ -1,50 +1,70 @@
-# Welcome to your Expo app 👋
+# React Native Learning App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A comprehensive learning application built with React Native and Expo Router.
 
-## Get started
+## Project Structure
 
-1. Install dependencies
+This project uses the Expo Router file-based routing system. Here's an overview of the folder structure:
 
-   ```bash
+```
+app/
+├── _layout.tsx              # Root layout for the entire app
+├── index.tsx                # Root index redirects to learn tab
+├── +not-found.tsx           # 404 error page
+├── core-components.tsx      # Core Components screen
+├── layout-styling.tsx       # Layout & Styling screen
+├── user-input.tsx           # User Input screen
+├── navigation.tsx           # Navigation screen
+├── (tabs)/                  # Tab-based navigation
+│   ├── _layout.tsx          # Layout for the tab navigation
+│   └── learn.tsx            # Main learning screen with links to all topics
+└── modals/                  # Modal screens
+    └── settings.tsx         # Settings modal
+```
+
+## Features
+
+- **Central Learning Hub**: A single tab to access all learning resources
+- **Core React Native Components**: Examples of basic building blocks
+- **Layout & Styling**: Techniques for creating beautiful UIs
+- **User Input Handling**: Forms and user interaction examples
+- **Navigation Patterns**: Different navigation flows and patterns
+- **Modal Screens**: Overlay content examples
+
+## Getting Started
+
+1. Install dependencies:
+   ```
    npm install
    ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
+2. Start the development server:
+   ```
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+3. Open the app in the Expo Go app on your phone or in a simulator.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Navigation Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+The app has been structured with a focus on clarity and ease of navigation:
 
-## Get a fresh project
+1. **Single Tab**: The app has a single "Learn" tab that serves as the central hub
+2. **Content Pages**: Each topic (Components, Styling, etc.) has its own dedicated page
+3. **Back Navigation**: All content pages include an intuitive back navigation to return to the Learn screen
+4. **Modal**: Settings are accessed through a modal overlay
 
-When you're ready, run:
+## Technology Stack
 
-```bash
-npm run reset-project
-```
+- React Native
+- Expo
+- Expo Router (File-based routing)
+- TypeScript
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Contributing
 
-## Learn more
+Feel free to submit issues or pull requests to improve the examples or add new learning modules.
 
-To learn more about developing your project with Expo, look at the following resources:
+## License
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+MIT
